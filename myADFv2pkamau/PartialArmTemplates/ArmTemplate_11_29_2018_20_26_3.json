@@ -1,0 +1,35 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "myADFv2pkamau"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/mypkamauAzureDataLakeAnalytics')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "AzureDataLakeAnalytics",
+				"typeProperties": {
+					"accountName": "myadlapkamau",
+					"servicePrincipalId": "b958022c-b23c-42d8-8e52-deb535d2ec81",
+					"servicePrincipalKey": {
+						"type": "SecureString",
+						"value": "**********"
+					},
+					"tenant": "ef60a5a4-900c-4789-89cd-0c42f28ef541",
+					"subscriptionId": "0b95343f-861c-4411-8b4b-f16f14e91a78",
+					"resourceGroupName": "myADLrg"
+				}
+			}
+		}
+	]
+}
